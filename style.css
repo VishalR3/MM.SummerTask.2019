@@ -57,4 +57,11 @@ nav{
     margin-top: 25px;
     align-content: center;
 }
+#query{
+    margin-top:10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border:1px solid black;
+}
+
 
