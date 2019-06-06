@@ -1,5 +1,9 @@
 <?php 
     class Posts extends CI_Controller{
+        public function __construct() {
+            parent::__construct();
+            $this->load->library('session');
+        }
         public function Index(){
             $data['title']='Latest Posts';
 
@@ -34,22 +38,21 @@
 
 
             }else{
-                $config['upload_path']='.assets/img/posts/';
-                $config['allowed_types']='gif|jpg|png';
-                $config['max_size']='2048';
-                $config['max_width']='500';
-                $config['max_height']='500';
-
+                $config['upload_path']='./assets/img/posts/';
+                $config['allowed_types']='gif|jpg|png|jpeg';
+                $config['max_size']='16777215';
+                $config['max_width']='3000';
+                $config['max_height']='3000';
                 $this->load->library('upload', $config);
                 $post_image = "noimage.jpg";
+                
 
-                if(!$this->upload->do_upload()){
-                    $errors= array('error'=> $this->upload->display_errors());
-                    $post_image = "noimage.jpg";
-                }else{
-                    $data= array('upload_data', $this->upload->data());
-                    $post_image= $_FILES['userfile']['name'];
-                }
+	            if ($this->upload->do_upload('userfile')) {
+                    $post_image = $this->upload->data('file_name');}
+                    else{
+                        $errors= array('error'=> $this->upload->display_errors());
+                        $post_image = "noimage.jpg";
+                    }
 
                 $this->Post_model->create_post($post_image);
                 redirect('posts');
@@ -75,22 +78,22 @@
 
         }
         public function update(){
-            $config['upload_path']='.assets/img/posts/';
-            $config['allowed_types']='gif|jpg|png';
-            $config['max_size']='2048';
-            $config['max_width']='500';
-            $config['max_height']='500';
-
-            $this->load->library('upload', $config);
-            $post_image = "noimage.jpg";
-
-            if(!$this->upload->do_upload()){
-                $errors= array('error'=> $this->upload->display_errors());
+            $config['upload_path']='./assets/img/posts/';
+            $config['allowed_types']='gif|jpg|png|jpeg';
+            $config['max_size']='16777215';
+                $config['max_width']='3000';
+                $config['max_height']='3000';
+                $this->load->library('upload', $config);
                 $post_image = "noimage.jpg";
-            }else{
-                $data= array('upload_data', $this->upload->data());
-                $post_image= $_FILES['userfile']['name'];
-            }
+                
+
+	            if ($this->upload->do_upload('userfile')) {
+                    $post_image = $this->upload->data('file_name');}
+                    else{
+                        $errors= array('error'=> $this->upload->display_errors());
+                        $post_image = "noimage.jpg";
+                    }
+
             $this->Post_model->Update_post();
             redirect("posts");
         }

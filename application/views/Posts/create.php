@@ -20,8 +20,9 @@
 	  </select>
   </div>
   <div class="form-group">
-	  <label>Upload Image</label>
+    <label>Upload Image :</label>
+    <br>
 	  <input type="file" name="userfile" size="20">
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>

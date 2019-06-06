@@ -19,13 +19,29 @@
 
         </head>
         <body>
+        
         <header class="container-fluid">
             <div class="row">
-                    <div class="col-sm-11 col-9" id="logo">
+                    <div class="col-sm-10 col-9" id="logo">
                             <h1>NewsTitle</h1>
                         </div>
-                        <div class="col-sm-1 col-3">
-                            <img src="<?php echo base_url(); ?>assets/img/yellow.png" alt="User" style="width:50px;height:50px;object-fit: cover">
+                        <div class="col-sm-2 col-3">
+                        <?php if (!$this->session->userdata('logged_in')) { ?>
+                            <a class="nav-link" href="<?php echo base_url(); ?>index.php/register"><strong>Register/Login</strong></a>
+
+                            <?php }
+                                else {
+                                        echo '<p style="text-align: center;"> Welcome <i><strong>'.$this->session->userdata('username');
+                                        if ($this->session->userdata('role') == 'admin') {
+                                            echo " (admin)";
+                                        }
+                                        echo '</strong></i></p>'; ?>
+                                        <p style="text-align: center;">
+                                        <a href=" <?php echo site_url('Users/logout'); ?>" style="text-transform: none;">Logout</a>
+                                        </p> 
+                                        <?php }
+                                        ?>
+                            <!--<img src="<?php echo base_url(); ?>assets/img/yellow.png" alt="User" style="width:50px;height:50px;object-fit: cover">-->
                         </div>
             </div> 
         </header>
@@ -41,8 +57,6 @@
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/posts"><strong>Posts</strong></a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/posts/create"><strong> Create Posts</strong></a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/categories"><strong>Categories</strong></a></li>
-                                <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/register"><strong>Register/Login</strong></a>
-                               </li>
                             </ul>
                         </div>
                 </nav>

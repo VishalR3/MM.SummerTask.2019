@@ -1,5 +1,5 @@
 header{
-    height:100px;
+    min-height:100px;
 }
 nav{
     position:relative;
@@ -67,7 +67,4 @@ nav{
     padding: 10px;
     box-sizing: border-box;
     border:1px solid black;
-}
-#loginmodal{
-    z-index:500;
 }

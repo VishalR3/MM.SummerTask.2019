@@ -57,4 +57,21 @@
                 return $query->result_array();
 
         }
+        public function get_featured_posts() {
+            $query = $this->db->query('SELECT * FROM posts WHERE featured=1 ORDER BY date DESC LIMIT 3;');
+            return $query->result_array();
+        }
+        public function get_editorial() {
+            $query = $this->db->query('SELECT * FROM posts ORDER BY views DESC LIMIT 3;');
+            return $query->result_array();
+        }
+        public function get_latest_posts() {
+                $query = $this->db->query("SELECT * FROM posts ORDER BY date DESC LIMIT 3;");
+                return $query->result_array();
+        }
+        public function get_highlights() {
+            $query = $this->db->query("SELECT * FROM posts WHERE highlight=1 ORDER BY date DESC LIMIT 3;");
+            return $query->result_array();
+    }
+
     }

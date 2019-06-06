@@ -8,6 +8,6 @@
     <label>Name</label>
     <input type="text" class="form-control" name="name" placeholder="Enter Name">
 </div>
-<button type="submit" class="btn btn-default">Submit</button>
+<button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

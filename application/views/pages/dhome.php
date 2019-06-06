@@ -6,7 +6,7 @@
                     <li data-target="#myslide" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <img src="<?php echo base_url(); ?>assets/img/red.png" style="object-fit: cover;width:100%;height:300px;">
                         <div class="carousel-caption">
                             <h3>The greatest news</h3>
@@ -36,7 +36,7 @@
                 <div class="title">Latest News</div>
                 <div class="row">
                 <div class="col-sm-4 news">
-                    <img src="<?php echo base_url(); ?>assets/img/coates.jpg" style="object-fit: cover; width:300px;height:300px;">
+                    <img src="<?php echo base_url(); ?>assets/img/posts/coates.jpg" style="object-fit: cover; width:300px;height:300px;">
                       <div class="data">
                           <h3>Ta-Nehisi Coates Reads “Conduction”</h3>
                           <?php echo word_limiter('<p>Ta-Nehisi Coates reads&nbsp;<a href="https://www.newyorker.com/magazine/2019/06/10/conduction">his story</a>&nbsp;from the June 10 &amp; 17, 2019, issue of the magazine. Coates is the author of the nonfiction books &ldquo;<a href="https://www.amazon.com/dp/0385527462/?tag=thneyo0f-20" target="_blank">The Beautiful Struggle</a>,&rdquo; &ldquo;<a href="https://www.amazon.com/dp/0399590560/?tag=thneyo0f-20" target="_blank">We Were Eight Years in Power</a>,&rdquo; and &ldquo;<a href="https://www.amazon.com/dp/0812993543/?tag=thneyo0f-20" target="_blank">Between the World and Me</a>,&rdquo; which won the National Book Award, in 2015. His first novel, &ldquo;<a href="https://www.amazon.com/dp/0399590595/?tag=thneyo0f-20" target="_blank">The Water Dancer</a>,&rdquo; from which this story is adapted, will be published in September.</p>',15); ?>
