@@ -1,9 +1,9 @@
 header{
-    min-height:100px;
+    height:100px;
 }
 nav{
     position:relative;
-    background-color: white;
+    background-color: #fafafa;
     z-index: 10;
     width:90%;
     margin:0 5%;
@@ -15,9 +15,9 @@ nav{
     margin:0px;
 }
 #navb{
-    position:absolute;
+    position: relative;
     background-color:rgb(255,255,255);
-    margin-top:250px;
+    /* margin-top:250px; */
     z-index: 12;
 
 }
@@ -45,6 +45,7 @@ nav{
 .news img{
     margin-left: auto;
     margin-right: auto;
+    object-fit: cover;
     
 }
 #footer{
@@ -67,4 +68,44 @@ nav{
     padding: 10px;
     box-sizing: border-box;
     border:1px solid black;
+}
+.holder{
+    background-color:#eee;
+    max-height:600px;
+    overflow:scroll;
+}
+.post{
+    padding:10px;
+}
+.post:nth-child(odd){
+    background-color:#ddd;
+}
+.admindel{
+    position: absolute;
+    bottom:0;
+    margin-top:30px;
+}
+#adminbar{
+    padding: 10px 15px;
+    box-sizing: border-box;
+}
+#admin-menu{
+    background-color: yellow;
+    padding:10px 15px;
+}
+table tr,th,td{
+    padding:10px;
+}
+.btn{
+    margin:2px;
+}
+blockquote{
+    display: flex;
+    background-color:#fcfcfc;
+    border:2px solid black;
+}
+blockquote>p{
+    padding:30px;
+    /* color:purple; */
+    font-weight: 700;
 }

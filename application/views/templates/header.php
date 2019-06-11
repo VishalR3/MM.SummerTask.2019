@@ -1,22 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
         <head>
                 <title><?php if($title){ echo $title ;}else{ echo $post['title'] ;} ?></title>
                 <meta charset="utf-8">
             <meta name="viewport" content="width=device-width,initial-scale=1">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fa/css/font-awesome.min.css">
-            <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
-            <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-            <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
-            <script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>
-            <script src="<?php echo base_url(); ?>assets/js/script.js"></script>
+            <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/fa/css/font-awesome.min.css">
+            <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
+            <script src="<?php echo base_url(); ?>/assets/js/bootstrap.min.js"></script>
+            <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js"></script>
+            <script src="<?php echo base_url(); ?>/assets/js/popper.min.js"></script>
+            <script src="<?php echo base_url(); ?>/assets/js/script.js"></script>
             <!--CDN Links-->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
             <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
-
         </head>
         <body>
         
@@ -31,11 +31,11 @@
 
                             <?php }
                                 else {
-                                        echo '<p style="text-align: center;"> Welcome <i><strong>'.$this->session->userdata('username');
+                                        echo '<p style="text-align: center;"><strong>'.$this->session->userdata('username');
                                         if ($this->session->userdata('role') == 'admin') {
                                             echo " (admin)";
                                         }
-                                        echo '</strong></i></p>'; ?>
+                                        echo '</strong></p>'; ?>
                                         <p style="text-align: center;">
                                         <a href=" <?php echo site_url('Users/logout'); ?>" style="text-transform: none;">Logout</a>
                                         </p> 
@@ -53,9 +53,12 @@
                         <div class="collapse navbar-collapse" id="navb">
                             <ul class="navbar-nav nav">
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>"><strong>Home</strong></a></li>
+                                <?php if ($this->session->userdata('role') == 'admin') {?>
+                                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/admin"><strong>Panel</strong></a></li>
+                                <?php } ?>
+                                
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/about"><strong>About</strong></a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/posts"><strong>Posts</strong></a></li>
-                                <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/posts/create"><strong> Create Posts</strong></a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/categories"><strong>Categories</strong></a></li>
                             </ul>
                         </div>
