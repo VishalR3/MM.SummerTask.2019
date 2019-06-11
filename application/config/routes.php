@@ -53,6 +53,7 @@ $route['users/login']='users/login';
 $route['users/signup']='users/signup';
 $route['posts/create']='posts/create';
 $route['posts/update']='posts/update';
+$route['posts/categories/(:any)']='posts/categories/$1';
 $route['posts/(:any)'] = 'posts/view/$1';
 $route['posts']='posts/index';
 $route['default_controller'] = 'pages/view';
@@ -60,6 +61,11 @@ $route['default_controller'] = 'pages/view';
 $route['categories']='categories/index';
 $route['categories/create'] = 'categories/create';
 $route['categories/posts/(:any)'] = 'categories/posts/$1';
+
+
+$route['admin']='admin/panel';
+$route['admin/make_high/(:any)']='admin/make_high/$1';
+$route['admin/delete_high/(:any)']='admin/delete_high/$1';
 
 
 $route['(:any)'] = '/pages/view/$1';

@@ -10,7 +10,7 @@
           $data['title']='Categories';
           $data['categories']=$this->category_model->get_categories(); 
 
-          $this->load->view('templates/header');
+          $this->load->view('templates/header',$data);
                 $this->load->view('categories/index', $data);
                 $this->load->view('templates/footer'); 
         }
@@ -19,8 +19,8 @@
 
             $this->form_validation->set_rules('name','Name','required');
             if($this->form_validation->run()===FALSE){
-                $this->load->view('templates/header');
-                $this->load->view('categories/create', $data);
+                $this->load->view('templates/header',$data);
+                $this->load->view('categories/index', $data);
                 $this->load->view('templates/footer');
             }else{
                 $this->category_model->create_category();
@@ -32,7 +32,7 @@
 
             $data['posts']= $this->Post_model->get_posts_by_category($id);
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header',$data);
                 $this->load->view('posts/index', $data);
                 $this->load->view('templates/footer');
         }

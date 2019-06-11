@@ -15,6 +15,7 @@ class Pages extends CI_Controller {
 
         $data['title'] = ucfirst($page); // Capitalize the first letter
         if($page=='home'){
+                $data['poll']=$this->admin_model->get_poll();
                 $data['latest'] = $this->Post_model->get_latest_posts();
                 $data['featured'] = $this->Post_model->get_featured_posts();
                 $data['editorial'] = $this->Post_model->get_editorial();

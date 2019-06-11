@@ -9,10 +9,13 @@
                     <?php foreach($highlights as $post) : ?>
                     <div class="carousel-item">
                             <img src="<?php echo base_url(); ?>assets/img/posts/<?php echo $post['post_image'] ;?>" style="object-fit: cover;width:100%;height:300px;">
+                            <a class="news-link" href="<?php echo base_url(); ?>index.php/posts/<?php echo $post['slug'] ; ?>" >
                             <div class="carousel-caption">
                                     <h3><?php echo $post['title'] ;?></h3>
-                                    <p><?php echo word_limiter($post['body'],20) ; ?></p>
+                                    <p><?php echo word_limiter($post['body'],18) ; ?></p>
+                                    <p style="font-size:10px;"><i class="fa fa-eye"></i> <?php echo $post['views']; ?> <i class="fa fa-comment"></i> <?php echo $post['comments']; ?></p>
                             </div>
+                            </a>
                     </div>
                 
                     <?php endforeach ; ?>
@@ -30,9 +33,10 @@
                     <div class="data" style="color:black;">
                         
                             <h4><?php echo $post['title'] ; ?></h4>
-                            <p><?php echo word_limiter($post['body'],20) ; ?></p>
+                            <p><?php echo word_limiter($post['body'],18) ; ?></p>
                           </div>
                           </a>
+                          <p class="text-muted pull-left" style="font-size:10px;"><i class="fa fa-eye"></i> <?php echo $post['views']; ?> <i class="fa fa-comment"></i> <?php echo $post['comments']; ?></p>
                     </div>
                     <?php endforeach ; ?>
                 
@@ -49,9 +53,10 @@
                     <div class="data" style="color:black;">
                         
                             <h4><?php echo $epost['title'] ; ?></h4>
-                            <p><?php echo word_limiter($epost['body'],20) ; ?></p>
+                            <p><?php echo word_limiter($epost['body'],18) ; ?></p>
                           </div>
                           </a>
+                          <p class="text-muted pull-left" style="font-size:10px;"><i class="fa fa-eye"></i> <?php echo $epost['views']; ?> <i class="fa fa-comment"></i> <?php echo $epost['comments']; ?></p>
                     </div>
                     <?php endforeach ; ?>
 
@@ -64,23 +69,32 @@
                     <div class="data" style="color:black;">
                         
                             <h4><?php echo $fpost['title'] ; ?></h4>
-                            <p><?php echo word_limiter($fpost['body'],20) ; ?></p>
+                            <p><?php echo word_limiter($fpost['body'],18) ; ?></p>
                           </div>
                           </a>
+                          <p class="text-muted pull-left" style="font-size:10px;"><i class="fa fa-eye"></i> <?php echo $fpost['views']; ?> <i class="fa fa-comment"></i> <?php echo $fpost['comments']; ?></p>
                     </div>
                     <?php endforeach ; ?>
                 </div>
             </div>
             <div class="col-sm-3" id="info">
-                <div class="card-2" id="poll">
+            <div class="card-2" id="poll">
                     <h4>Poll</h4>
-                    <p><strong>What do you think of That?</strong></p>
-                    <form>
-                        <input type="radio" name="vote" value="1">Doesn't Care</br>
-                        <input type="radio" name="vote" value="2">Doesn't Care</br>
-                        <input type="radio" name="vote" value="3">Doesn't Care</br>
+                    <p><strong><?php echo $poll['poll_ques'] ; ?></strong></p>
+                    <div class='poll_form'>
+                    <?php echo form_open("users/cast_vote"); ?>
+                        <input type="radio" name="vote" value="1"><?php echo $poll['poll_1'] ; ?></br>
+                        <input type="radio" name="vote" value="2"><?php echo $poll['poll_2'] ; ?></br>
+                        <input type="radio" name="vote" value="3"><?php echo $poll['poll_3'] ; ?></br>
                         <input type="submit" value="Vote" class="btn btn-primary" id="voteb">
                     </form>
+                    </div>
+                    <div class="poll_result" style="display:none">
+                    <p id="data"></p>
+                    <button class="btn btn-danger" id="resultbtn">Result</button>
+                    <button class="btn btn-danger" id="ansbtn">Answers</button>
+
+                    </div>
                 </div>
                 <div class="card-2" id="query">
                     <p><strong>Having Trouble Knowing Things?</strong></p>
@@ -95,3 +109,36 @@
                 $(".carousel-inner").children('div').eq(0).addClass("active");
             })
         </script>
+        <script>
+    $(document).ready(function(){
+        //Voting starts
+        //AJAX function for cookies
+        $.get("<?php echo base_url();?>index.php/admin/get_cookies",function(resp,stats){
+                if(resp!="null"){
+                    $(".poll_form").hide();
+                    $(".poll_result").show();
+                    $("#data").load("<?php echo base_url();?>assets/get_result.php");
+                }
+        });
+        $("#voteb").click(function(event){
+            var data=$("input[name='vote']:checked").val();
+            $.post("<?php echo base_url();?>assets/get_result.php",{
+                vote: data
+                },function(res,stat){
+               if(stat=="success"){
+                $(".poll_form").hide();
+                $(".poll_result").show();
+                $("#data").load("<?php echo base_url();?>assets/get_result.php");
+               }
+               });
+               event.preventDefault();
+        })
+        $("#resultbtn").click(function(){
+           $("#data").load("<?php echo base_url();?>assets/get_result.php");
+        })
+        $("#ansbtn").click(function(){
+           $("#data").load("<?php echo base_url();?>assets/get_option.php");
+        })
+        //Voting Ends
+    })
+</script>

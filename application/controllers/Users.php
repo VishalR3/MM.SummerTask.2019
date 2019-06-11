@@ -10,7 +10,7 @@ public function __construct() {
     }
     
 public function signup() {
-    $this->form_validation->set_rules('username', 'Username','trim|required');
+    $this->form_validation->set_rules('username', 'Username','trim|required|is_unique[users.username]');
     $this->form_validation->set_rules('email', 'Email','trim|required|valid_email|is_unique[users.email]');
     $this->form_validation->set_rules('password', 'Password','trim|required');
 
@@ -67,6 +67,10 @@ public function login() {
 public function logout() {
     $this->session->sess_destroy();
     redirect();
+}
+public function cast_vote(){
+    $this->Users_model->cast_vote();
+    redirect("home");
 }
 
 }

@@ -9,7 +9,7 @@
 
         $data['posts'] = $this->Post_model->get_posts(); 
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header',$data);
             $this->load->view('posts/index', $data);
             $this->load->view('templates/footer');
         }
@@ -19,8 +19,9 @@
                 show_404();
             }
             $data['title']=$data['post']['title'];
+            $data['comments']=$this->Post_model->get_comment($slug);
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header',$data);
             $this->load->view('posts/view', $data);
             $this->load->view('templates/footer');
         }
@@ -32,7 +33,7 @@
             $this->form_validation->set_rules('body', 'Body', 'required');
 
             if($this->form_validation->run()=== FALSE){
-                $this->load->view('templates/header');
+                $this->load->view('templates/header',$data);
             $this->load->view('posts/create', $data);
             $this->load->view('templates/footer');
 
@@ -55,7 +56,7 @@
                     }
 
                 $this->Post_model->create_post($post_image);
-                redirect('posts');
+                redirect("posts/create");
             }
 
             
@@ -72,7 +73,7 @@
             $data['title']='Edit Post';
             $data['categories']=$this->Post_model->get_categories();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header',$data);
             $this->load->view('posts/edit', $data);
             $this->load->view('templates/footer');
 
@@ -96,5 +97,21 @@
 
             $this->Post_model->Update_post();
             redirect("posts");
+        }
+        public function categories($name){
+            $data['title']=$name;
+            $data['cat']=$this->category_model->get_id($name);
+            $data['posts']= $this->Post_model->get_posts_by_category($data['cat']['id']);
+
+            $this->load->view('templates/header',$data);
+                $this->load->view('posts/index', $data);
+                $this->load->view('templates/footer');
+
+        }
+        public function comment(){
+            $this->Post_model->comment();
+        }
+        public function get_comments(){
+            
         }
     }

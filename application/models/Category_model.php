@@ -19,7 +19,11 @@
         public function get_category($id){
             $query= $this->db->get_where('categories',array('id'=>$id));
             return $query->row();
-        }		
+		}	
+		public function get_id($name){
+			$query =$this->db->get_where('categories',array('name'=>$name));
+			return $query->row_array();
+		}	
 	}
 
 ?>

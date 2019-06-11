@@ -11,7 +11,12 @@
                 return $query->result_array();
             }
             $query =  $this->db->get_where('posts',array('slug'=>$slug));
-            return $query->row_array();
+            $data = $query->row_array();
+            $views= $data['views'];
+            $views++;
+            $this->db->where('slug',$slug);
+            $this->db->update("posts",array('views'=>$views));
+            return $data;
 
         }
         public function create_post($post_image){
@@ -57,6 +62,7 @@
                 return $query->result_array();
 
         }
+
         public function get_featured_posts() {
             $query = $this->db->query('SELECT * FROM posts WHERE featured=1 ORDER BY date DESC LIMIT 3;');
             return $query->result_array();
@@ -72,6 +78,69 @@
         public function get_highlights() {
             $query = $this->db->query("SELECT * FROM posts WHERE highlight=1 ORDER BY date DESC LIMIT 3;");
             return $query->result_array();
-    }
+        }
+        public function del_high($id){
 
+            $data = array(
+                'highlight'=>'0'
+            );
+            $this->db->where('id', $id);
+
+            return $this->db->update('posts',$data);
+
+        }
+        public function m_high($slug){
+            
+            $data = array(
+                'highlight'=>'1'
+            );
+            $this->db->where('slug', $slug);
+
+            return $this->db->update('posts',$data);
+            
+        }
+        public function del_featured($id){
+
+            $data = array(
+                'featured'=>'0'
+            );
+            $this->db->where('id', $id);
+
+            return $this->db->update('posts',$data);
+
+        }
+        public function m_featured($id){
+            $data = array(
+                'featured'=>'1'
+            );
+            $this->db->where('slug', $slug);
+
+            return $this->db->update('posts',$data);
+        }
+        public function comment(){
+            $post_id= $this->input->post('post');
+            $data= array(
+                'comment' => $this->input->post('cmt'),
+                'post'=> $post_id,
+                'user' => $this->input->post('user'),
+                'user_role' => $this->input->post('role'),
+                'status' => "Approved"
+            );
+            $this->db->insert("comments",$data);
+            $query=$this->db->query("SELECT * FROM posts WHERE id =".$post_id);
+            $post=$query->row_array();
+            $comments=$post['comments']+1;
+            $this->db->where("id",$post_id);
+            $this->db->update('posts',array("comments"=>$comments));
+        }
+        public function get_comment($slug){
+            $post =  $this->db->get_where('posts',array('slug'=>$slug));
+            $data=$post->row_array();
+            $post_id=$data['id'];
+            $query=$this->db->get_where("comments",array('post'=>$post_id));
+            $comments=sizeof($query->result_array());
+            $this->db->where('id',$post_id);
+            $this->db->update('posts',array("comments"=> $comments));
+            return $query->result_array();
+        }
     }
