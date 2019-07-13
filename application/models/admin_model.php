@@ -59,7 +59,26 @@ class Admin_model extends CI_Model{
     
     $this->input->set_cookie($cookie);
     }
-    
+    public function askques($ques){
+        $slug=url_title($ques);
+        $this->db->insert('questions',array('question'=>$ques,'slug'=>$slug, 'stat'=>'unanswered'));
+        return "Question Submitted!! We will get back to you soon!!";
+
+    }
+    public function get_questions(){
+        $data=$this->db->get_where('questions',array('stat'=>'unanswered'));
+        return $data->result_array();
+    }
+    public function answerques(){
+        $data=array(
+            'answer'=>$this->input->post('answer'),
+            'author'=>$this->input->post('author'),
+            'stat'=>'answered'
+        );
+        $slug=$this->input->post('slug');
+        $this->db->where('slug',$slug);
+        $this->db->update('questions',$data);
+    }
 }
 
 

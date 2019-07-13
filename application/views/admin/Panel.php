@@ -12,7 +12,7 @@
     <li class="nav-item"><a class="nav-link" href="#">Comment Approval</a></li>
     <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/register">Add Subscribers</a></li>
     <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/admin/admins">Add Admin</a></li>
-    <li class="nav-item"><a class="nav-link" href="#Ques">Answer Q&A</a></li>
+    <li class="nav-item"><a class="nav-link" href="#ques">Answer Q&A</a></li>
     <li class="nav-item"><a class="nav-link" href="#Poll_bar">Add Poll Question</a></li>
     <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/admin/beta">Beta Ground <i class="fa fa-star text-danger"></i></a></li>
 </ul>
@@ -109,6 +109,27 @@
     </div>
 
 
+    </div>
+    <div id="ques">
+    <h4>Answer Questions</h4>
+    <div class="holder">
+    <?php foreach($questions as $question) : ?>
+    <div class="container post">
+    <div class="data" style="color:black;">
+    <h6><?php echo $question['question'] ; ?></h6>
+    <small><i><p class="text-muted stat">Unanswered</p></i></small>
+    </div>
+    <form class="ans_form" method="post" action="<?php echo base_url(); ?>/index.php/admin/answer">
+    <input type="text" name="answer" placeholder="Answer">
+    <input type="text" name="author" placeholder="Author">
+    <input type="text" name="slug" value="<?php echo $question['slug'] ; ?>" hidden>
+    <button class="btn btn-primary ans_btn" type="submit">Answer</button>
+    </form>
+
+    </div>
+    <?php endforeach ; ?>
+    
+    </div>
     </div>
 
 
