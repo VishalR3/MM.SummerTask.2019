@@ -60,6 +60,7 @@
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/about"><strong>About</strong></a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/posts"><strong>Posts</strong></a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/categories"><strong>Categories</strong></a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>index.php/forum"><strong>Forum</strong></a></li>
                             </ul>
                         </div>
                 </nav>

@@ -99,7 +99,28 @@
                 <div class="card-2" id="query">
                     <p><strong>Having Trouble Knowing Things?</strong></p>
                     <p>If you have any doubts or queries, you can ask us freely. We will be very happy to answer as many questions as we can?</p>
-                    <a href="query.htmL"><button type="button" class="btn btn-primary" style="justify-self: center;">Ask a Question</button></a>
+                    <button type="button" class="btn btn-primary" data-toggle='modal' data-target="#query_modal">Ask a Question</button>
+                    <div class="modal fade" id="query_modal">
+                    <div class="modal-dialog col-sm-4" style="margin:auto;top:50%;transform:translate(0,-50%);" >
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center text-light bg-danger" id="stat"></p>
+                                <p><strong>Having Trouble Knowing Things?</strong></p>
+                                <p>If you have any doubts or queries, you can ask us freely. We will be very happy to answer as many questions as we can?</p>
+                                <form>
+                                    <div class="form-group">
+                                        <label>Question</label>
+                                        <input type="text" class="form-control" name="question">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary form-control" id="ask_btn">Ask</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,5 +161,20 @@
            $("#data").load("<?php echo base_url();?>assets/get_option.php");
         })
         //Voting Ends
+        //Ask a question
+        $("#ask_btn").click(function(event){
+            event.preventDefault(); 
+             var ques= $("input[name=question]").val();
+            $.post("<?php echo base_url(); ?>index.php/admin/ask",{
+                question : ques
+            },function(res,stat){
+                if(stat=="success"){
+                    $("#stat").html(res);
+                }
+                else{
+                    $("#stat").html("We are having some Problems Now. Try again later!!");
+                }
+            })
+        })
     })
 </script>

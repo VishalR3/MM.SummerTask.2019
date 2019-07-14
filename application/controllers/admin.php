@@ -14,6 +14,7 @@ class Admin extends CI_Controller {
         $data['featured'] = $this->Post_model->get_featured_posts();
         $data['editorial'] = $this->Post_model->get_editorial();
         $data['highlights']=$this->Post_model->get_highlights();
+        $data['questions']=$this->admin_model->get_questions();
 
 
         $this->load->view("templates/header",$data);
@@ -85,7 +86,14 @@ class Admin extends CI_Controller {
         $data=$this->input->cookie('Voted');
         echo json_encode($data);
     }
-    
+    public function ask(){
+        $ques=$this->input->post("question");
+        echo $this->admin_model->askques($ques);
+    }
+    public function answer(){
+        $this->admin_model->answerques();
+        redirect("admin/panel");
+    }
 
 
 
