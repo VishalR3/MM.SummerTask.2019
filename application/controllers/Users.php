@@ -20,13 +20,13 @@ public function signup() {
         $name = $this->input->post('name');
         $password = md5($this->input->post('password'));
         $this->Users_model->sign_up($username, $email, $name ,$password);
-        $this->session->set_flashdata('signup_msg', 'Sign up successful! Login to your account');
+        $this->session->set_flashdata('signup_stat', 'Sign up successful! Login to your account');
         redirect(site_url());
     }
 
     else {
-        redirect(site_url());
-        $this->session->set_flashdata('signup_msg', 'Sign up unsuccessful! Try again');
+        redirect('/register');
+        $this->session->set_flashdata('signup_stat', 'Sign up unsuccessful! Try again');
     }
 }
 
@@ -49,17 +49,17 @@ public function login() {
         $this->session->set_userdata('role', $data['role']);
         $this->session->set_userdata('logged_in', TRUE);
 
-        $this->session->set_flashdata('msg_success','Login Successful!');
+        $this->session->set_flashdata('login_stat','Login Successful!');
 
         redirect(site_url());
     }
 
     else {
-        $this->session->set_flashdata('msg_error', 'Login unsuccessful. Try again...');
-        redirect(site_url());
+        $this->session->set_flashdata('login_stat', 'Login unsuccessful. Try again...');
+        redirect('/register');
     }
     } else {
-        redirect(site_url());
+        redirect('/register');
     }
 
 }

@@ -49,6 +49,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$route['api/signup']="api/signup";
+$route['api/login']="api/login";
+$route['api/users']="api/users";
+$route['api/get_featured']="api/get_featured";
+$route['api/posts']="api/posts";
+$route['api/posts/(:any)']="api/view/$1";
 $route['forum/create']='forum/create';
 $route['forum/(:any)'] = 'forum/view/$1';
 $route['forum']='forum/index';

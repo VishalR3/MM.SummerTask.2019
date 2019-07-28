@@ -22,6 +22,7 @@
             $slug=url_title($this->input->post('question'));
 
             $data = array(
+                'title'=>$this->input->post('title'),
                 'question'=>$this->input->post('question'),
                 'slug'=>$slug,
             );

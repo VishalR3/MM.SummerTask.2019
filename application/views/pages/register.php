@@ -1,8 +1,10 @@
 <div class="container">
+<?php if (!$this->session->userdata('logged_in')) { ?>
     <div class="row">
         <div class="col-sm-6" style="padding:2% 10% 10%">
         <div style="background-color:#eee;padding:10px 20px;">
                     <h1>Register</h1>
+<?php if($this->session->flashdata('signup_stat')){?><p style="text-align: center;padding:10px;background-color:red;color:white;"><?php echo $this->session->flashdata('signup_stat'); ?></p><?php } ?>
                                             <form class="form" method="POST" action="<?php echo site_url(); ?>/users/signup">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
@@ -41,6 +43,7 @@
         <div style="background-color:#ccf;padding:10px 20px;">
             <h4>Already Registered?</h4>
             <h1>Login</h1>
+<?php if($this->session->flashdata('login_stat')){ ?> <p style="text-align: center;padding:10px;background-color:red;color:white;"><?php echo $this->session->flashdata('login_stat'); ?></p><?php } ?>
                                         <form class="form" method="POST" action="<?php echo site_url(); ?>/users/login">
                                                 <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -60,9 +63,17 @@
                                         </form>
                 </div>
         </div>
-        <p style="text-align: center;"><?php echo $this->session->flashdata('msg_error'); ?></p>
-        <p style="text-align: center;"><?php echo $this->session->flashdata('signup_msg'); ?></p>
+        
+        
 
 
     </div>
+<?php }
+ else { ?>
+    <div class="errbox text-center" style="background-color:#bbb;padding:30px;">
+     <h1>You are Logged in as <?php echo $this->session->userdata("username"); ?>.</h1>
+     <p>Do u want to <a href="<?php echo base_url();?>/index.php/Users/logout">logout</a> ??</p>
+     </div>
+
+<?php } ?>
 </div>

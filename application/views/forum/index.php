@@ -22,8 +22,9 @@
 <div id="latest">
 <?php foreach($questions as $q): ?>
 <div id="questions">
-    <a href="<?php echo base_url(); ?>/index.php/forum/<?php echo $q['slug']; ?>" class="text-dark"><h5><?php echo $q['question']; ?></h5> </a>
-    <i><small>Created at : <?php echo $q['date']; ?><br>
+    <a href="<?php echo base_url(); ?>/index.php/forum/<?php echo $q['slug']; ?>" class="text-dark">
+    <h5><?php echo $q['title']; ?></h5><p><?php echo $q['question']; ?></p> </a>
+    <i class="text-mute"><small>Created at : <?php echo $q['date']; ?><br>
     <?php echo $q['answers']; ?> replies
     </small></i><br>
    

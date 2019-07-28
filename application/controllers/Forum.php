@@ -27,8 +27,9 @@
             $this->load->view('templates/footer');
         }
         public function create(){
-            $data['title']="Create";
+            $data['title']="Create Thread";
 
+            $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('question', 'Question', 'required');
 
             if($this->form_validation->run()=== FALSE){
